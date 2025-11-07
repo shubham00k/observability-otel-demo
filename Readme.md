@@ -37,7 +37,7 @@ The goal of this project is to understand and implement **end-to-end observabili
 🛠 Deployment Setup
 
 
-🛠 Deployment Setup
+## 🛠 Deployment Setup
 🔹 Prerequisites
 
 Kubernetes cluster (Minikube / Kind / EKS)
@@ -111,7 +111,7 @@ Observe request rates, error counts, and latency
 
 Correlate Grafana panels with Jaeger traces
 
-📊 Key Observability Features
+## 📊 Key Observability Features
 
 Distributed Tracing: See the full journey of a request through microservices.
 
@@ -123,7 +123,7 @@ Scalable Deployment: Easily reproducible using Helm.
 
 K8s Native Setup: All deployed in Kubernetes for real-world DevOps workflows.
 
-🧹 Cleanup
+## 🧹 Cleanup
 
 To delete everything created by Helm:
 
@@ -131,11 +131,7 @@ helm uninstall otel-demo -n observability
 kubectl delete namespace observability
 
 
-💡 If PVCs (PersistentVolumeClaims) remain:
-
-kubectl delete pvc --all -n observability
-
-📂 Folder Structure
+## 📂 Folder Structure
 observability-otel-demo/
 │
 ├── README.md
@@ -143,7 +139,7 @@ observability-otel-demo/
 ├── collector-config.yaml     # OpenTelemetry collector config
 └── manifests/                # Additional manifests if any
 
-🧠 Learnings
+## 🧠 Learnings
 
 How to deploy OpenTelemetry Demo via Helm on K8s
 
