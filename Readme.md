@@ -35,47 +35,49 @@ The goal of this project is to understand and implement **end-to-end observabili
         ↓
      Grafana UI
 🛠 Deployment Setup
+
+
+🛠 Deployment Setup
 🔹 Prerequisites
+
 Kubernetes cluster (Minikube / Kind / EKS)
 
 Helm installed
 
 kubectl configured
 
+Ports open for local access (e.g. 3000, 16686)
 
 🔹 Step 1: Clone the Repository
-bash
-Copy code
-git clone https://github.com/shubham00k/observability-otel-demo.git
+git clone https://github.com/<your-github-username>/observability-otel-demo.git
 cd observability-otel-demo
 
 🔹 Step 2: Create Namespace
-bash
-Copy code
 kubectl create namespace observability
 
 🔹 Step 3: Deploy using Helm
-bash
-Copy code
 helm repo add open-telemetry https://open-telemetry.github.io/opentelemetry-helm-charts
 helm repo update
 
 helm install otel-demo open-telemetry/opentelemetry-demo -n observability
+
+
 This installs the complete OpenTelemetry Demo application along with its dependencies and collector.
 
 🔹 Step 4: Verify Installation
-bash
-Copy code
 helm list -n observability
 kubectl get all -n observability
+
+
 Make sure all pods are in Running state before proceeding.
 
 🔹 Step 5: Access Jaeger UI
+
 Jaeger shows distributed traces across services.
 
-bash
-Copy code
 kubectl port-forward svc/jaeger 16686:16686 -n observability
+
+
 Open browser → http://localhost:16686
 
 You can now:
@@ -87,12 +89,14 @@ Measure latency & trace spans
 Identify slow services or errors
 
 🔹 Step 6: Access Grafana UI
+
 Grafana visualizes metrics collected by Prometheus.
 
-bash
-Copy code
 kubectl port-forward svc/grafana 3000:3000 -n observability
+
+
 Open browser → http://localhost:3000
+
 Default login (if not changed):
 
 User: admin
@@ -108,6 +112,7 @@ Observe request rates, error counts, and latency
 Correlate Grafana panels with Jaeger traces
 
 📊 Key Observability Features
+
 Distributed Tracing: See the full journey of a request through microservices.
 
 Metrics Dashboard: System-level insights for services & cluster health.
@@ -119,27 +124,27 @@ Scalable Deployment: Easily reproducible using Helm.
 K8s Native Setup: All deployed in Kubernetes for real-world DevOps workflows.
 
 🧹 Cleanup
+
 To delete everything created by Helm:
 
-bash
-Copy code
 helm uninstall otel-demo -n observability
 kubectl delete namespace observability
+
+
 💡 If PVCs (PersistentVolumeClaims) remain:
 
-bash
-Copy code
 kubectl delete pvc --all -n observability
+
 📂 Folder Structure
-bash
-Copy code
 observability-otel-demo/
 │
 ├── README.md
 ├── values.yaml               # Custom Helm values (if modified)
 ├── collector-config.yaml     # OpenTelemetry collector config
 └── manifests/                # Additional manifests if any
+
 🧠 Learnings
+
 How to deploy OpenTelemetry Demo via Helm on K8s
 
 How to access & use Jaeger for tracing
@@ -147,4 +152,3 @@ How to access & use Jaeger for tracing
 How to visualize metrics using Grafana
 
 Understanding Helm release management in a production-like setup
-
